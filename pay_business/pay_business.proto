@@ -69,6 +69,8 @@ enum RetCode {
     TRADE_PAY_EXPIRE = 6000012;
     TRADE_ORDER_NOT_MATCH_USER = 6000013;
     USER_ACCOUNT_STATE_INVALID = 6000014;
+    USER_CHARGE_RECORD_EXIST = 6000015;
+    TRADE_UUID_EMPTY = 6000016;
 }
 
 enum OperationType {
@@ -111,6 +113,7 @@ message AccountChargeRequest {
     AccountType account_type = 2; // 选填
     CoinType coin_type = 3; // 选填
     string amount = 4; // 数量
+    string out_trade_no = 5;
 
     OperationMeta op_meta = 199;
 }
