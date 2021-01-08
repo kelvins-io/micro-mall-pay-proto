@@ -33,6 +33,13 @@ service PayBusinessService {
             body:"*"
         };
     }
+
+    // 获取交易唯一ID
+    rpc GetTradeUUID(GetTradeUUIDRequest) returns(GetTradeUUIDResponse) {
+        option (google.api.http) = {
+            get: "/v1/trade/uuid"
+        };
+    }
 }
 
 enum RetCode {
@@ -110,6 +117,22 @@ message AccountChargeRequest {
 
 message AccountChargeResponse {
     CommonResponse common = 1; // 全部充值成功或失败
+}
+
+enum TradeType {
+    PAY = 0;
+    CHARGE = 1;
+}
+
+message GetTradeUUIDRequest {
+    TradeType trade_type = 1;
+    string client_id = 2;
+    int64 uid = 3;
+}
+
+message GetTradeUUIDResponse {
+    CommonResponse common = 1;
+    string uuid = 2;
 }
 
 message AccountEntry {
